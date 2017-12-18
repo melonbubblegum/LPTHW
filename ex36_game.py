@@ -1,3 +1,4 @@
+# ID 3030106
 from sys import exit
 
 def fairy_walk():
