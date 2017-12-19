@@ -1,7 +1,21 @@
-from random import randint
-# -*- coding: utf-8 -*-
+# I added clarifying commentary to the file because I obviously couldn't finish it on time
+# As a whole file, this one will not work, but the different classes work to some extent
+# Also, line 151: import firstgame refers to my old game file from ex36 that i just renamed 
+# It used to be called ex36_game.py and it's also uploaded here on github. 
 
-# add and define enter, also textual fun
+
+# I had problems with:
+# from sys import exit
+# that was actually in line 1 here.
+# But it would exit the game right at the start somehow, 
+# so i took it out
+from random import randint
+
+# -*- coding: utf-8 -*- # because rather safe than sorry
+
+# Scene is done, i only need to code
+# def enter(x, y):
+# but except for that, it's done 
 class Scene(object):
 
 	def add(other):
@@ -16,10 +30,15 @@ class Scene(object):
 	def breaktime(other):
 		other.health -= randint(15, 20)
 
+# the Life class is done, full stop. 
+# It only fulfills the function of some kind of 'health bar'.
+# I actually wanted to put the health into the Player class, but 
+# I found it easier to think it through with a separate Life subclass.
 class Life(Scene):
 	def __init__(self, health):
 		self.health = health
 
+# Done, same as Feierabend
 class Startover(Scene):
 	def workmore(self):
 		new_game = raw_input("Work another shift? YES/NO\n> ")
@@ -31,9 +50,9 @@ class Startover(Scene):
 			print "OK BYE THEN!"
 
 		else:
-			return 'anew'
+			# return 'anew'
 
-# add returns and textual fun
+# Function done, except for returns in comments
 class Feierabend(Scene):
 	def how_r_u(self, other):
 		if other.health >= 50 and other.health <= 100:
@@ -46,7 +65,7 @@ class Feierabend(Scene):
 			print "Uh. This actually shouldn't be possible?!"
 			# return 'closed'
 
-# add returns
+# Done, just like the Waitresss class
 class Entrance(Scene):
 	def start(self):
 		print "You've started an odd job sometime ago. Not too long, to be used to it,"
@@ -60,19 +79,21 @@ class Entrance(Scene):
 
 		if energy == "GOOD":
 			print "Nothing you couldn't handle, anyway."
-			#
+			# return stringname
 		elif energy == "BAD":
 			print "You kinda think you pissed Karma or some deity off,"
 			print "and you feel accordingly."
 			Scene.take(Me)
-			#
+			# return stringname
 		else:
 			print "You don't want to think about it - only gibberish resides in your head."
 			Scene.overworked(Me)
 			print Me.health
-			#
+			# return stringname
 
-# add returns
+# Lacks the connecting [return 'stringname'] parts.
+# I also wanted to add more 'if-elif-else' in here, but 
+# apart from that and missing dialogue, Hipster should work just like Waitress. 
 class Hipster(Scene):
 	def instagrammable(self):
 		print "You're relieved to have had only nice customers this afternoon."
@@ -96,18 +117,21 @@ class Hipster(Scene):
 		if rec == "SMOOTHIE" or rec == "SECRET MENU":
 			print "HM YEAH"
 			Scene.take(Me)
+			# return string
 		elif rec == "HOMEBLEND" or rec == "LATTE":
 			print "NAH"
 			Scene.take(Me)
+			# return string
 		else:
 			print "You're doing a terrible job, sweetie."
 			print "One of your colleagues thankfully saves you from further escapades"
 			print "and takes over. You see Mr. Flannel roll his eyes at you, and you"
 			print "obnoxiously roll your eyes right back."
 			Scene.overworked(Me)
-			# return
+			# return string
 
-# add returns 
+# Waitress is done, and should work if ran in a test with Life and Scene,
+# it just lacks the connecting [return 'stringname'] parts.
 class Waitress(Scene):
 	def take_a_break(self):
 		print "You decide to take a break, far away from your ridiculous customers."
@@ -134,7 +158,7 @@ class Waitress(Scene):
 				print "\nOut of politeness, or even real enjoyment - why ever: whatever."
 				print "You only know that you feel kind of energised "
 				Scene.add(Me)
-				#
+				# return string
 			else:
 				print "\nAw, Man. Whatever. That's not nice."
 				print "\nMolly doesn't think so either. You both leave the room"
@@ -142,20 +166,24 @@ class Waitress(Scene):
 				print "eccentric customers, you feel tense."
 				Scene.take(Me)
 				print Me.health
-				#
+				# return string
 		else:
 			print "She shrugs her shoulders at your dumb answer. 'I have to get to work soon, anyway,' she says nonchalantly."
 			print "Winsome waitress smile on her face, she leaves the room."
 			print "Afterwards, you kinda feel tense. And it is with this feeling, you return to duty."
 			Scene.take(Me)
-			#
+			# return string
 
+# both Cook and Waiter class I haven't even started yet
+# There's also the BFF and Diva class that are in my original file,
+# but I didn't put them in here because they're basically
+# at the same stage as these ones here. 
 class Cook(Scene):
 	pass
-
 class Waiter(Scene):
 	pass
 
+# this class is pretty much done and largely the same as Shaw's Map class
 class TheCafe(object):
 
 	tables = {
@@ -180,6 +208,7 @@ class TheCafe(object):
 	def new_shift(self):
 		return self.wait_table(self.shift_starts)
 
+# i wrote pass, but what i meant was that i haven't come around to code the final Player() yet
 class Player(object):
 	def __init__(self, the_cafe):
 		pass
